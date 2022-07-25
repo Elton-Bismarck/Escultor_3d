@@ -9,19 +9,19 @@ Sculptor::Sculptor(int _nx, int _ny, int _nz){
     nx = _nx + 1;
     ny = _ny + 1;
     nz = _nz + 1;
-    v = new Voxel**[nx];
+    v = new Voxel**[nx]();
     if(v == nullptr){
         std::cout << "Matriz nao alocada";
         exit(0);
     }
     for (int i = 0; i < nx; i++){
-        v[i] = new Voxel*[ny];
+        v[i] = new Voxel*[ny]();
         if(v[i] == nullptr){
             std::cout << "Matriz nao alocada";
             exit(0);
         }
         for (int j = 0; j < ny; j++){
-            v[i][j] = new Voxel[nz];
+            v[i][j] = new Voxel[nz]();
             if(v[i][j] == nullptr){
                 std::cout << "Matriz nao alocada";
                 exit(0);
@@ -180,12 +180,12 @@ void Sculptor::writeOFF(const char* filename){
                 for(int k = 1; k < nz; k++){
                     if(v[i][j][k].isOn == true){
                         valor = 8*contador;
-                        xfiles << 4 << " " << 0 + valor << " " << 3 + valor << " " << 2 + valor << " " << 1 + valor << " " << v[i][j][k].r << ".0 " << v[i][j][k].g << ".0 " << v[i][j][k].b << ".0 " << v[i][j][k].a << "\n";
-                        xfiles << 4 << " " << 4 + valor << " " << 5 + valor << " " << 6 + valor << " " << 7 + valor << " " << v[i][j][k].r << ".0 " << v[i][j][k].g << ".0 " << v[i][j][k].b << ".0 " << v[i][j][k].a << "\n";
-                        xfiles << 4 << " " << 0 + valor << " " << 1 + valor << " " << 5 + valor << " " << 4 + valor << " " << v[i][j][k].r << ".0 " << v[i][j][k].g << ".0 " << v[i][j][k].b << ".0 " << v[i][j][k].a << "\n";
-                        xfiles << 4 << " " << 0 + valor << " " << 4 + valor << " " << 7 + valor << " " << 3 + valor << " " << v[i][j][k].r << ".0 " << v[i][j][k].g << ".0 " << v[i][j][k].b << ".0 " << v[i][j][k].a << "\n";
-                        xfiles << 4 << " " << 3 + valor << " " << 7 + valor << " " << 6 + valor << " " << 2 + valor << " " << v[i][j][k].r << ".0 " << v[i][j][k].g << ".0 " << v[i][j][k].b << ".0 " << v[i][j][k].a << "\n";
-                        xfiles << 4 << " " << 1 + valor << " " << 2 + valor << " " << 6 + valor << " " << 5 + valor << " " << v[i][j][k].r << ".0 " << v[i][j][k].g << ".0 " << v[i][j][k].b << ".0 " << v[i][j][k].a << "\n";
+                        xfiles << 4 << " " << 0 + valor << " " << 3 + valor << " " << 2 + valor << " " << 1 + valor << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::fixed <<std::setprecision(1) << "\n";
+                        xfiles << 4 << " " << 4 + valor << " " << 5 + valor << " " << 6 + valor << " " << 7 + valor << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::fixed <<std::setprecision(1) << "\n";
+                        xfiles << 4 << " " << 0 + valor << " " << 1 + valor << " " << 5 + valor << " " << 4 + valor << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::fixed <<std::setprecision(1) << "\n";
+                        xfiles << 4 << " " << 0 + valor << " " << 4 + valor << " " << 7 + valor << " " << 3 + valor << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::fixed <<std::setprecision(1) << "\n";
+                        xfiles << 4 << " " << 3 + valor << " " << 7 + valor << " " << 6 + valor << " " << 2 + valor << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::fixed <<std::setprecision(1) << "\n";
+                        xfiles << 4 << " " << 1 + valor << " " << 2 + valor << " " << 6 + valor << " " << 5 + valor << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::fixed <<std::setprecision(1) << "\n";
                         contador++;
                     }
                 }
